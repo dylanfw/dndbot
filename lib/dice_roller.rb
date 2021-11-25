@@ -1,5 +1,7 @@
 require "discordrb"
 
+MAX_COUNT = 99
+MAX_SIZE = 9001
 FORMULA_PATTERN = /(\d+)d(\d+)([\+-]\d+)?/
 
 module DiceRoller
@@ -15,6 +17,15 @@ module DiceRoller
       count = match.captures[0].to_i
       size = match.captures[1].to_i
       modifier = match.captures[2].to_i
+
+      # Ignore ridiculous dice roll requests
+      if count > MAX_COUNT
+        event << "I don't have that many dice."
+        return nil
+      elsif size > MAX_SIZE
+        event << "I don't have any dice that large."
+        return nil
+      end
 
       rolls = (0...count).map { rand(1..size) }
       msg_parts = [
