@@ -24,7 +24,7 @@ votes are placed via reactions.
          🇦: Monday
          🇧: Wednesday
          🇨: Friday
-        [🇦 1] [🇧 1] [🇨 1]
+        [🇦 1] [🇧 1] [🇨 1] [😀+]
 
 
 ```
@@ -91,6 +91,16 @@ Start the bot
 ```
 
 
+## Roadmap
+
+- "Unavailable" scheduling option
+  - A default scheduling option for players that are unavailable for all given days
+- Reminders for users that have not yet voted
+  - Notify all users who have yet to vote, either automatically after some amount of time or manually via command (eg, `.nudge`)
+- Custom poll creation
+  - Allow creation of polls with custom questions and options rather than simply days of the week.
+- D&D Session Notes integration
+  - Given a Google Doc (configured in .env), share updates in the channel when substantial changes are made
 ## Authors
 
 - [@dylanfw](https://www.github.com/dylanfw)
