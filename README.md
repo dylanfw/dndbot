@@ -25,8 +25,6 @@ votes are placed via reactions.
          🇧: Wednesday
          🇨: Friday
         [🇦 1] [🇧 1] [🇨 1]
-
-
 ```
 
 **Dice Rolling**, .roll (alias: .r)
@@ -101,6 +99,9 @@ Start the bot
   - Allow creation of polls with custom questions and options rather than simply days of the week.
 - D&D Session Notes integration
   - Given a Google Doc (configured in .env), share updates in the channel when substantial changes are made
+
+
+
 ## Authors
 
 - [@dylanfw](https://www.github.com/dylanfw)
