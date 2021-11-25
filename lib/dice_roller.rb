@@ -16,7 +16,7 @@ module DiceRoller
       size = match.captures[1].to_i
       modifier = match.captures[2].to_i
 
-      rolls = (0..count).map { rand(1..size) }
+      rolls = (0...count).map { rand(1..size) }
       msg_parts = [
         "You rolled",
         *rolls.map { |roll| "(#{roll})" },
