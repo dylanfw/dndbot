@@ -24,7 +24,7 @@ votes are placed via reactions.
          🇦: Monday
          🇧: Wednesday
          🇨: Friday
-        [🇦 1] [🇧 1] [🇨 1] [😀+]
+        [🇦 1] [🇧 1] [🇨 1]
 
 
 ```
