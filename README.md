@@ -91,8 +91,7 @@ Start the bot
 
 ## Roadmap
 
-- "Unavailable" scheduling option
-  - A default scheduling option for players that are unavailable for all given days
+- Unit tests
 - Reminders for users that have not yet voted
   - Notify all users who have yet to vote, either automatically after some amount of time or manually via command (eg, `.nudge`)
 - Custom poll creation
