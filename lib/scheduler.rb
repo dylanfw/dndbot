@@ -21,6 +21,7 @@ module Scheduler
     "\u{1F1F6}", "\u{1F1F7}", "\u{1F1F8}", "\u{1F1F9}", "\u{1F1FA}", "\u{1F1FB}", "\u{1F1FC}", "\u{1F1FD}", 
     "\u{1F1EE}" 
   ]
+  UNAVAILABLE_OPTION = {"Unavailable" => "\u{1F645}"}
 
   command :schedule, {
     aliases: [:sched],
@@ -33,6 +34,7 @@ module Scheduler
     else
       selected_days = days.split("").map { |day| ABBREVIATED_DAYS[day] }
       options = selected_days.zip(ALPHA_EMOJI).to_h
+      options = options.merge(UNAVAILABLE_OPTION)
       options_txt = options.map { |day, emoji| "#{emoji}: #{day}" }.join("\n")
 
       msg = event.channel.send_message <<~EOF
