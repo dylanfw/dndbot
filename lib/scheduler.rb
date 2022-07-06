@@ -32,7 +32,7 @@ module Scheduler
     unless match = days.match(DAYS_FORMAT)
       event << "Invalid days provided: #{days}. Expected format `.schedule MTWRFSU`, `.schedule TWR`, etc."
     else
-      selected_days = days.split("").map { |day| ABBREVIATED_DAYS[day] }
+      selected_days = days.split("").map { |day| ABBREVIATED_DAYS[day.upcase] }
       options = selected_days.zip(ALPHA_EMOJI).to_h
       options = options.merge(UNAVAILABLE_OPTION)
       options_txt = options.map { |day, emoji| "#{emoji}: #{day}" }.join("\n")
