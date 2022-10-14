@@ -5,7 +5,6 @@ DayOption = Struct.new(:initial, :name, :emoji)
 module Scheduler
   extend Discordrb::EventContainer
   extend Discordrb::Commands::CommandContainer
-  
   DAYS_FORMAT = /^[MTWRFSU]+$/i
   DAYS_OPTIONS = {
     "M" => DayOption.new("M", "Monday", "\u{1F1F2}"),
