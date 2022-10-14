@@ -1,27 +1,22 @@
 require "discordrb"
 
+DayOption = Struct.new(:initial, :name, :emoji)
 
 module Scheduler
   extend Discordrb::EventContainer
   extend Discordrb::Commands::CommandContainer
-
+  
   DAYS_FORMAT = /^[MTWRFSU]+$/i
-  ABBREVIATED_DAYS = {
-    "M" => "Monday",
-    "T" => "Tuesday",
-    "W" => "Wednesday",
-    "R" => "Thursday",
-    "F" => "Friday",
-    "S" => "Saturday",
-    "U" => "Sunday"
+  DAYS_OPTIONS = {
+    "M" => DayOption.new("M", "Monday", "\u{1F1F2}"),
+    "T" => DayOption.new("T", "Tuesday", "\u{1F1F9}"),
+    "W" => DayOption.new("W", "Wednesday", "\u{1F1FC}"),
+    "R" => DayOption.new("R", "Thursday", "\u{1F1F7}"),
+    "F" => DayOption.new("F", "Friday", "\u{1F1EB}"),
+    "S" => DayOption.new("S", "Saturday", "\u{1F1F8}"),
+    "U" => DayOption.new("U", "Sunday", "\u{1F1FA}")
   }
-  ALPHA_EMOJI = [
-    "\u{1F1E6}", "\u{1F1E7}", "\u{1F1E8}", "\u{1F1E9}", "\u{1F1EA}", "\u{1F1EB}", "\u{1F1EC}", "\u{1F1ED}", 
-    "\u{1F1EE}", "\u{1F1EF}", "\u{1F1F0}", "\u{1F1F1}", "\u{1F1F2}", "\u{1F1F3}", "\u{1F1F4}", "\u{1F1F5}", 
-    "\u{1F1F6}", "\u{1F1F7}", "\u{1F1F8}", "\u{1F1F9}", "\u{1F1FA}", "\u{1F1FB}", "\u{1F1FC}", "\u{1F1FD}", 
-    "\u{1F1EE}" 
-  ]
-  UNAVAILABLE_OPTION = {"Unavailable" => "\u{1F645}"}
+  UNAVAILABLE_OPTION = {"Unavailable" => DayOption.new("X", "Unavailable", "\u{1F645}"}
 
   command :schedule, {
     aliases: [:sched],
@@ -32,10 +27,9 @@ module Scheduler
     unless match = days.match(DAYS_FORMAT)
       event << "Invalid days provided: #{days}. Expected format `.schedule MTWRFSU`, `.schedule TWR`, etc."
     else
-      selected_days = days.split("").map { |day| ABBREVIATED_DAYS[day.upcase] }
-      options = selected_days.zip(ALPHA_EMOJI).to_h
+      options = days.split("").map { |day| DAYS_OPTIONS[day.upcase] }
       options = options.merge(UNAVAILABLE_OPTION)
-      options_txt = options.map { |day, emoji| "#{emoji}: #{day}" }.join("\n")
+      options_txt = options.map { |day| "#{day.emoji}: #{day.name}" }.join("\n")
 
       msg = event.channel.send_message <<~EOF
         @everyone When can you play next?
@@ -43,7 +37,7 @@ module Scheduler
         #{options_txt}
       EOF
 
-      options.each { |_, emoji| msg.react(emoji) }
+      options.each { |day| msg.react(day.emoji) }
     end
     nil
   end
