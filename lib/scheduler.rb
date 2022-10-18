@@ -15,7 +15,7 @@ module Scheduler
     "S" => DayOption.new("S", "Saturday", "\u{1F1F8}"),
     "U" => DayOption.new("U", "Sunday", "\u{1F1FA}")
   }
-  UNAVAILABLE_OPTION = {"Unavailable" => DayOption.new("X", "Unavailable", "\u{1F645}"}
+  UNAVAILABLE_OPTION = {"Unavailable" => DayOption.new("X", "Unavailable", "\u{1F645}")}
 
   command :schedule, {
     aliases: [:sched],
