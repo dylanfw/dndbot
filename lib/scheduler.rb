@@ -27,7 +27,7 @@ module Scheduler
       event << "Invalid days provided: #{days}. Expected format `.schedule MTWRFSU`, `.schedule TWR`, etc."
     else
       options = days.split("").map { |day| DAYS_OPTIONS[day.upcase] }
-      options = options.merge(UNAVAILABLE_OPTION)
+      options = options.push(UNAVAILABLE_OPTION)
       options_txt = options.map { |day| "#{day.emoji}: #{day.name}" }.join("\n")
 
       msg = event.channel.send_message <<~EOF
