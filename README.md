@@ -21,10 +21,11 @@ votes are placed via reactions.
 <you> .schedule MWF
 <Dndbot> @everyone When can you play next?
 
-         🇦: Monday
-         🇧: Wednesday
-         🇨: Friday
-        [🇦 1] [🇧 1] [🇨 1]
+         🇲: Monday
+         🇼: Wednesday
+         🇫: Friday
+         🙅: Unavailable
+        [🇲 1] [🇼 1] [🇫 1][🙅 0]
 ```
 
 **Dice Rolling**, .roll (alias: .r)
