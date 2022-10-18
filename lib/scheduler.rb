@@ -28,7 +28,7 @@ module Scheduler
     else
       options = days.split("").map { |day| DAYS_OPTIONS[day.upcase] }
       options = options.push(UNAVAILABLE_OPTION)
-      options_txt = options.map { |day| "#{day.emoji}: #{day.name}" }.join("\n")
+      options_txt = options.map { |day| "#{day['emoji']}: #{day['name']}" }.join("\n")
 
       msg = event.channel.send_message <<~EOF
         @everyone When can you play next?
@@ -36,7 +36,7 @@ module Scheduler
         #{options_txt}
       EOF
 
-      options.each { |day| msg.react(day.emoji) }
+      options.each { |day| msg.react(day['emoji']) }
     end
     nil
   end
